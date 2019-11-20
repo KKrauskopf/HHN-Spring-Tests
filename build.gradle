@@ -1,0 +1,49 @@
+plugins {
+	id 'org.springframework.boot' version "2.2.0.RELEASE"
+	id "io.freefair.lombok" version "3.2.1"
+	id 'io.spring.dependency-management' version "1.0.7.RELEASE"
+	id "org.hidetake.swagger.generator" version "2.18.1"
+	id 'java'
+}
+
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenLocal()
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
+
+	// MapStruct
+	compile group: 'org.mapstruct', name: 'mapstruct', version: mapStructVersion
+	compileOnly group: 'org.mapstruct', name: 'mapstruct-processor', version: mapStructVersion
+	annotationProcessor group: 'org.mapstruct', name: 'mapstruct-processor', version: mapStructVersion
+
+	// Apache Commons
+	compile group: 'org.apache.commons', name: 'commons-lang3', version: apacheCommonv3
+	compile group: 'org.apache.commons', name: 'commons-collections4', version: apacheCommonv4
+
+	// Jackson
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: jacksonVersion
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: jacksonVersion
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: jacksonVersion
+	compile group: 'org.zalando', name: 'jackson-datatype-money', version: zalandoJacksonMoneyVersion
+
+		// Swagger
+	swaggerCodegen group: 'org.openapitools', name: 'openapi-generator-cli', version: openapiGeneratorVersion
+	compile group: 'io.springfox', name: 'springfox-swagger2', version: swaggerVersion
+	compile group: 'io.springfox', name: 'springfox-bean-validators', version: swaggerVersion
+	compile group: 'io.springfox', name: 'springfox-swagger-ui', version: swaggerVersion
+
+	testCompile group: 'org.assertj', name: 'assertj-core', version: assertJVersion
+
+	testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test'
+}
+
+test {
+	useJUnitPlatform()
+}
