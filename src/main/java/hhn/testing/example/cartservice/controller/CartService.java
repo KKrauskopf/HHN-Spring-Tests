@@ -37,4 +37,12 @@ public class CartService {
         return new Cart();
     }
 
+    public Cart discountCart(String id) {
+        Optional<Cart> cart = cartRepository.findById(id);
+        if(cart.isPresent()) {
+            cart.get().setDiscount(BigDecimal.TEN);
+        }
+        return cart.get();
+    }
+
 }
